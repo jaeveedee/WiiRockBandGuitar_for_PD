@@ -1,0 +1,758 @@
+#N canvas 450 154 786 759 10;
+#X msg 304 54 open 4;
+#N canvas 162 133 570 420 serin 0;
+#X obj 286 61 cnv 15 30 15 empty \$0-open-canvas 4 4 8 0 14 -233017
+-1 0;
+#X obj 60 61 hradio 15 1 1 15 empty empty empty 0 -6 0 8 -225271 -1
+-1 4;
+#X obj 60 13 inlet;
+#X msg 200 202 label \$1;
+#X obj 200 180 makefilename %d;
+#X obj 59 108 int;
+#X obj 59 337 outlet;
+#X msg 201 306 set \$1 \$2;
+#X obj 59 266 trigger bang anything;
+#X obj 201 286 list;
+#X msg 60 210 open \$1;
+#X obj 200 225 send \$0-open-canvas;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 11 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 5 0 10 0;
+#X connect 7 0 6 0;
+#X connect 8 0 6 0;
+#X connect 8 1 9 0;
+#X connect 9 0 7 0;
+#X connect 10 0 8 0;
+#X coords 0 -1 1 1 257 17 1 60 60;
+#X restore 304 33 pd serin;
+#X obj 304 76 hid 0;
+#X obj 158 46 tgl 30 0 empty empty empty 17 7 0 10 -4034 -1 -1 1 1
+;
+#X obj 331 93 unpack s s f;
+#X floatatom 582 110 5 0 0 0 - - -;
+#X symbolatom 451 110 10 0 0 0 - - -;
+#X symbolatom 517 110 10 0 0 0 - - -;
+#N canvas 249 43 1169 538 audioOut 0;
+#X text 132 397 TO DO: - need atleast 10 oscillators \; - a few settings
+based on the switch \; - a base note for the open string that is \;
+affected by the + and - keys \; - pitch bend from whammy bar \; - something
+like delay from vert button;
+#X obj 95 20 r \$0-stringOne;
+#X obj 34 214 r \$0-stringSix;
+#X obj 268 19 r \$0-stringTwo;
+#X obj 224 203 r \$0-stringSeven;
+#X obj 461 27 r \$0-stringThree;
+#X obj 431 207 r \$0-stringEight;
+#X obj 688 15 r \$0-stringFour;
+#X obj 617 201 r \$0-stringNine;
+#X obj 863 25 r \$0-stringFive;
+#X obj 807 201 r \$0-stringTen;
+#X obj -85 22 r \$0-stringZero;
+#X obj -85 47 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 95 46 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 34 241 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 268 45 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 224 228 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 461 52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 431 231 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 688 39 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 617 226 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 863 50 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 807 226 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -51 70 + 0;
+#X obj 129 70 + 2;
+#X obj 302 90 + 4;
+#X obj 495 89 + 7;
+#X obj 722 77 + 9;
+#X obj 897 83 + 12;
+#X obj 68 277 + 14;
+#X obj 258 267 + 16;
+#X obj 465 276 + 19;
+#X obj 652 257 + 21;
+#X obj 841 270 + 24;
+#X obj -51 48 r \$0-baseNote;
+#X obj 129 47 r \$0-baseNote;
+#X obj 68 252 r \$0-baseNote;
+#X obj 302 66 r \$0-baseNote;
+#X obj 258 240 r \$0-baseNote;
+#X obj 495 63 r \$0-baseNote;
+#X obj 465 253 r \$0-baseNote;
+#X obj 722 49 r \$0-baseNote;
+#X obj 652 232 r \$0-baseNote;
+#X obj 897 59 r \$0-baseNote;
+#X obj 841 246 r \$0-baseNote;
+#X obj -85 120 guitarsound~;
+#X obj 95 119 guitarsound~;
+#X obj -16 85 r \$0-switchState;
+#X obj -45 404 catch~ strings;
+#X obj 164 90 r \$0-switchState;
+#X obj 337 93 r \$0-switchState;
+#X obj 268 117 guitarsound~;
+#X obj -85 150 throw~ strings;
+#X obj 94 144 throw~ strings;
+#X obj 268 145 throw~ strings;
+#X obj 863 118 guitarsound~;
+#X obj 932 89 r \$0-switchState;
+#X obj 863 143 throw~ strings;
+#X obj 688 115 guitarsound~;
+#X obj 757 86 r \$0-switchState;
+#X obj 688 140 throw~ strings;
+#X obj 461 124 guitarsound~;
+#X obj 530 95 r \$0-switchState;
+#X obj 461 149 throw~ strings;
+#X obj 807 302 guitarsound~;
+#X obj 876 273 r \$0-switchState;
+#X obj 807 327 throw~ strings;
+#X obj 618 300 guitarsound~;
+#X obj 687 271 r \$0-switchState;
+#X obj 617 325 throw~ strings;
+#X obj 431 308 guitarsound~;
+#X obj 500 279 r \$0-switchState;
+#X obj 431 333 throw~ strings;
+#X obj 224 303 guitarsound~;
+#X obj 293 274 r \$0-switchState;
+#X obj 223 328 throw~ strings;
+#X obj 34 303 guitarsound~;
+#X obj 103 274 r \$0-switchState;
+#X obj 34 328 throw~ strings;
+#X obj -45 436 outlet~;
+#X connect 1 0 13 0;
+#X connect 2 0 14 0;
+#X connect 3 0 15 0;
+#X connect 4 0 16 0;
+#X connect 5 0 17 0;
+#X connect 6 0 18 0;
+#X connect 7 0 19 0;
+#X connect 8 0 20 0;
+#X connect 9 0 21 0;
+#X connect 10 0 22 0;
+#X connect 11 0 12 0;
+#X connect 12 0 45 0;
+#X connect 13 0 46 0;
+#X connect 14 0 76 0;
+#X connect 15 0 51 0;
+#X connect 16 0 73 0;
+#X connect 17 0 61 0;
+#X connect 18 0 70 0;
+#X connect 19 0 58 0;
+#X connect 20 0 67 0;
+#X connect 21 0 55 0;
+#X connect 22 0 64 0;
+#X connect 23 0 45 1;
+#X connect 24 0 46 1;
+#X connect 25 0 51 1;
+#X connect 26 0 61 1;
+#X connect 27 0 58 1;
+#X connect 28 0 55 1;
+#X connect 29 0 76 1;
+#X connect 30 0 73 1;
+#X connect 31 0 70 1;
+#X connect 32 0 67 1;
+#X connect 33 0 64 1;
+#X connect 34 0 23 0;
+#X connect 35 0 24 0;
+#X connect 36 0 29 0;
+#X connect 37 0 25 0;
+#X connect 38 0 30 0;
+#X connect 39 0 26 0;
+#X connect 40 0 31 0;
+#X connect 41 0 27 0;
+#X connect 42 0 32 0;
+#X connect 43 0 28 0;
+#X connect 44 0 33 0;
+#X connect 45 0 52 0;
+#X connect 46 0 53 0;
+#X connect 47 0 45 2;
+#X connect 48 0 79 0;
+#X connect 49 0 46 2;
+#X connect 50 0 51 2;
+#X connect 51 0 54 0;
+#X connect 55 0 57 0;
+#X connect 56 0 55 2;
+#X connect 58 0 60 0;
+#X connect 59 0 58 2;
+#X connect 61 0 63 0;
+#X connect 62 0 61 2;
+#X connect 64 0 66 0;
+#X connect 65 0 64 2;
+#X connect 67 0 69 0;
+#X connect 68 0 67 2;
+#X connect 70 0 72 0;
+#X connect 71 0 70 2;
+#X connect 73 0 75 0;
+#X connect 74 0 73 2;
+#X connect 76 0 78 0;
+#X connect 77 0 76 2;
+#X restore 451 688 pd audioOut;
+#N canvas 199 61 1594 562 strings------------------------- 0;
+#X obj 53 -288 inlet;
+#X text 475 -223 keys in order for string presses \; btn 1 \; btn 2
+\; btn 3 \; btn 0 \; btn 4 \; btn 6 octave up \;;
+#X obj 53 -262 route btn_1 btn_2 btn_3 btn_0 btn_4 btn_6;
+#X obj 53 -152 s \$0-string1;
+#X obj 93 -169 s \$0-string2;
+#X obj 134 -186 s \$0-string3;
+#X obj 174 -203 s \$0-string4;
+#X obj 215 -220 s \$0-string5;
+#X obj 255 -237 s \$0-octave;
+#X obj 1131 29 r \$0-octave;
+#X floatatom 1094 67 5 0 0 0 - - -;
+#X obj 1094 87 spigot;
+#X obj 1073 72 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 1073 -40 r \$0-string5;
+#X msg 1094 23 9;
+#X obj 1094 46 + 0;
+#X floatatom 1151 104 5 0 0 0 - - -;
+#X obj 1094 4 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 1094 109 moses 10;
+#X obj 1079 126 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1147 126 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 885 31 r \$0-octave;
+#X floatatom 848 69 5 0 0 0 - - -;
+#X obj 848 89 spigot;
+#X obj 827 74 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 848 48 + 0;
+#X floatatom 898 106 5 0 0 0 - - -;
+#X obj 848 6 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 833 128 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 895 128 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 666 29 r \$0-octave;
+#X floatatom 629 67 5 0 0 0 - - -;
+#X obj 629 87 spigot;
+#X obj 608 72 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 629 46 + 0;
+#X floatatom 679 104 5 0 0 0 - - -;
+#X obj 629 4 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 613 126 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 676 126 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 454 29 r \$0-octave;
+#X floatatom 417 67 5 0 0 0 - - -;
+#X obj 417 87 spigot;
+#X obj 396 72 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 417 46 + 0;
+#X floatatom 467 104 5 0 0 0 - - -;
+#X obj 417 4 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 402 126 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 465 126 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 220 31 r \$0-octave;
+#X floatatom 183 69 5 0 0 0 - - -;
+#X obj 183 89 spigot;
+#X obj 162 74 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 183 48 + 0;
+#X floatatom 233 106 5 0 0 0 - - -;
+#X obj 183 6 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 162 -38 r \$0-string1;
+#X msg 183 25 1;
+#X obj 183 111 moses 2;
+#X obj 396 -40 r \$0-string2;
+#X msg 417 23 3;
+#X obj 417 109 moses 4;
+#X obj 608 -40 r \$0-string3;
+#X msg 629 23 5;
+#X obj 629 109 moses 6;
+#X obj 827 -38 r \$0-string4;
+#X msg 848 25 7;
+#X obj 848 111 moses 8;
+#X obj -223 36 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 59 52 r \$0-string5;
+#X obj -130 -16 r \$0-string1;
+#X obj -83 1 r \$0-string2;
+#X obj -36 18 r \$0-string3;
+#X obj 11 35 r \$0-string4;
+#X obj -145 94 expr $f1 + $f2 + $f3 + $f4 + $f5;
+#X obj 44 73 i;
+#X obj -4 73 i;
+#X obj -51 73 i;
+#X obj -98 73 i;
+#X obj -145 73 i;
+#X obj -223 56 t b b b b b;
+#X obj -161 132 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -98 132 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom -183 111 5 0 0 0 - - -;
+#X obj 232 128 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 160 128 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 178 -63 string 1;
+#X text 401 -71 string 2;
+#X text 607 -71 string 3;
+#X text 830 -73 string 4;
+#X text 1074 -73 string 5;
+#X text -153 -45 open string if no buttons;
+#X text 110 -288 recieve button presses;
+#X text 1211 31 adds the octave if \; top buttons are pressed;
+#X obj -145 153 outlet;
+#X obj 132 175 outlet;
+#X obj 365 176 outlet;
+#X obj 577 175 outlet;
+#X obj 796 178 outlet;
+#X obj 1043 176 outlet;
+#X text 473 -270 This outputs a number based on what string is pressed
+and \; goes to their own outlet so more than one can be played at a
+time;
+#X obj -223 16 r \$0-strumOn;
+#X obj 183 -16 r \$0-strumOn;
+#X obj 417 -18 r \$0-strumOn;
+#X obj 629 -18 r \$0-strumOn;
+#X obj 848 -16 r \$0-strumOn;
+#X obj 1094 -18 r \$0-strumOn;
+#X obj -145 115 moses 1;
+#X text -79 131 some other string is on;
+#X obj 183 175 s \$0-stringOne;
+#X obj 222 150 s \$0-stringSix;
+#X obj 417 176 s \$0-stringTwo;
+#X obj 456 151 s \$0-stringSeven;
+#X obj 629 174 s \$0-stringThree;
+#X obj 668 149 s \$0-stringEight;
+#X obj 848 176 s \$0-stringFour;
+#X obj 887 151 s \$0-stringNine;
+#X obj 1094 175 s \$0-stringFive;
+#X obj 1139 150 s \$0-stringTen;
+#X obj -94 154 s \$0-stringZero;
+#X connect 0 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 2 2 5 0;
+#X connect 2 3 6 0;
+#X connect 2 4 7 0;
+#X connect 2 5 8 0;
+#X connect 9 0 15 1;
+#X connect 10 0 11 0;
+#X connect 11 0 16 0;
+#X connect 11 0 18 0;
+#X connect 12 0 11 1;
+#X connect 13 0 12 0;
+#X connect 14 0 15 0;
+#X connect 15 0 10 0;
+#X connect 17 0 14 0;
+#X connect 18 0 19 0;
+#X connect 18 0 98 0;
+#X connect 18 0 116 0;
+#X connect 18 1 20 0;
+#X connect 18 1 98 0;
+#X connect 18 1 117 0;
+#X connect 21 0 25 1;
+#X connect 22 0 23 0;
+#X connect 23 0 26 0;
+#X connect 23 0 66 0;
+#X connect 24 0 23 1;
+#X connect 25 0 22 0;
+#X connect 27 0 65 0;
+#X connect 30 0 34 1;
+#X connect 31 0 32 0;
+#X connect 32 0 35 0;
+#X connect 32 0 63 0;
+#X connect 33 0 32 1;
+#X connect 34 0 31 0;
+#X connect 36 0 62 0;
+#X connect 39 0 43 1;
+#X connect 40 0 41 0;
+#X connect 41 0 44 0;
+#X connect 41 0 60 0;
+#X connect 42 0 41 1;
+#X connect 43 0 40 0;
+#X connect 45 0 59 0;
+#X connect 48 0 52 1;
+#X connect 49 0 50 0;
+#X connect 50 0 53 0;
+#X connect 50 0 57 0;
+#X connect 51 0 50 1;
+#X connect 52 0 49 0;
+#X connect 54 0 56 0;
+#X connect 55 0 51 0;
+#X connect 56 0 52 0;
+#X connect 57 0 94 0;
+#X connect 57 0 108 0;
+#X connect 57 0 84 0;
+#X connect 57 1 83 0;
+#X connect 57 1 94 0;
+#X connect 57 1 109 0;
+#X connect 58 0 42 0;
+#X connect 59 0 43 0;
+#X connect 60 0 46 0;
+#X connect 60 0 95 0;
+#X connect 60 0 110 0;
+#X connect 60 1 47 0;
+#X connect 60 1 95 0;
+#X connect 60 1 111 0;
+#X connect 61 0 33 0;
+#X connect 62 0 34 0;
+#X connect 63 0 37 0;
+#X connect 63 0 96 0;
+#X connect 63 0 112 0;
+#X connect 63 1 38 0;
+#X connect 63 1 96 0;
+#X connect 63 1 113 0;
+#X connect 64 0 24 0;
+#X connect 65 0 25 0;
+#X connect 66 0 28 0;
+#X connect 66 0 97 0;
+#X connect 66 0 114 0;
+#X connect 66 1 29 0;
+#X connect 66 1 97 0;
+#X connect 66 1 115 0;
+#X connect 67 0 79 0;
+#X connect 68 0 74 1;
+#X connect 69 0 78 1;
+#X connect 70 0 77 1;
+#X connect 71 0 76 1;
+#X connect 72 0 75 1;
+#X connect 73 0 82 0;
+#X connect 73 0 106 0;
+#X connect 74 0 73 4;
+#X connect 75 0 73 3;
+#X connect 76 0 73 2;
+#X connect 77 0 73 1;
+#X connect 78 0 73 0;
+#X connect 79 0 78 0;
+#X connect 79 1 77 0;
+#X connect 79 2 76 0;
+#X connect 79 3 75 0;
+#X connect 79 4 74 0;
+#X connect 100 0 67 0;
+#X connect 101 0 54 0;
+#X connect 102 0 45 0;
+#X connect 103 0 36 0;
+#X connect 104 0 27 0;
+#X connect 105 0 17 0;
+#X connect 106 0 80 0;
+#X connect 106 0 93 0;
+#X connect 106 0 118 0;
+#X connect 106 1 81 0;
+#X restore -17 291 pd strings-------------------------;
+#X text 189 57 turn on HID;
+#X text 354 -9 choose an input device \; might be different every time
+;
+#N canvas 0 93 998 505 switchStuff 0;
+#X obj 595 -116 inlet;
+#X obj 595 -87 route hatswitch abs_z abs_rz;
+#N canvas 501 118 388 307 switchPicker 0;
+#X obj 20 19 inlet;
+#X obj 143 244 outlet;
+#X obj 20 42 sel 25 76 150 178 229;
+#X obj 143 194 i;
+#X floatatom 143 218 5 0 0 0 - - -;
+#X obj 143 77 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 26 244 s \$0-switchState;
+#X text 188 104 picks a number between \; 1 and 5 based on the \; state
+of the switch and \; bangs when the switch \; stops moving;
+#X msg 20 177 0;
+#X msg 44 155 100;
+#X msg 69 133 200;
+#X msg 93 112 300;
+#X msg 118 90 400;
+#X obj 183 41 loadbang;
+#X connect 0 0 2 0;
+#X connect 2 0 8 0;
+#X connect 2 1 9 0;
+#X connect 2 2 10 0;
+#X connect 2 3 11 0;
+#X connect 2 4 12 0;
+#X connect 2 5 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 4 0 6 0;
+#X connect 5 0 3 0;
+#X connect 8 0 3 1;
+#X connect 9 0 3 1;
+#X connect 10 0 3 1;
+#X connect 11 0 3 1;
+#X connect 12 0 3 1;
+#X connect 13 0 5 0;
+#X restore 705 -54 pd switchPicker;
+#N canvas 240 499 309 228 whammyBar 0;
+#X obj 109 12 inlet;
+#X obj 142 44 != 127;
+#X floatatom 109 105 5 0 0 0 - - -;
+#X obj 142 66 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 109 86 spigot;
+#X obj 159 121 / 255;
+#X floatatom 159 141 5 0 0 0 - - -;
+#X text 11 71 outputs real \; value of the \; whammy;
+#X text 177 79 normalizes between \; 0 and 1;
+#X obj 202 157 s \$0-whammyNorm;
+#X obj 9 121 s \$0-whammyReal;
+#X obj 109 183 outlet;
+#X obj 159 183 outlet;
+#X connect 0 0 1 0;
+#X connect 0 0 4 0;
+#X connect 1 0 3 0;
+#X connect 2 0 5 0;
+#X connect 2 0 10 0;
+#X connect 2 0 11 0;
+#X connect 3 0 4 1;
+#X connect 4 0 2 0;
+#X connect 5 0 6 0;
+#X connect 6 0 9 0;
+#X connect 6 0 12 0;
+#X restore 650 59 pd whammyBar;
+#N canvas 301 420 498 232 strummer 0;
+#X obj 194 61 inlet;
+#X obj 194 84 moses 8;
+#X obj 194 107 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 116 122 s \$0-strumOn;
+#X floatatom 293 78 5 0 0 0 - - -;
+#X obj 336 94 s \$0-strumNumber;
+#X text 114 147 sends a \; bang when \; strummed;
+#X text 341 112 tells the actual \; number of the strum \; bar;
+#X obj 194 147 outlet;
+#X obj 293 147 outlet;
+#X text 14 11 use 'space' to strum \; if no guitar;
+#X connect 0 0 1 0;
+#X connect 0 0 4 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 0 8 0;
+#X connect 4 0 5 0;
+#X connect 4 0 9 0;
+#X restore 595 211 pd strummer;
+#X floatatom 705 -27 5 0 0 0 - - -;
+#X text 705 -7 state of the switch use \; [r \$0-switchState] to recieve
+;
+#X floatatom 650 85 5 0 0 0 - - -;
+#X floatatom 719 84 5 0 0 0 - - -;
+#X text 644 108 tells the program the state of the \; whammy bar both
+real value and \; between 0 and 1 \; use [r \$0-whammyReal] and \;
+[r \$0-whammyNorm] to recieve;
+#X obj 595 234 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 658 234 5 0 0 0 - - -;
+#X text 596 251 tells the program if the guitar is \; being strummed
+\; use [r \$0-strumOn] and \; [r \$0-strumNumber] to recieve;
+#X obj 83 -108 inlet;
+#X obj 83 -77 route btn_8 btn_9 btn_12 btn_5;
+#N canvas 753 47 532 448 scalePicker 0;
+#X obj 18 21 inlet;
+#X obj 250 19 inlet;
+#X obj 257 376 outlet;
+#X floatatom 130 111 5 0 0 0 - - -;
+#X obj 130 238 i;
+#X obj 105 238 - 1;
+#X obj 149 205 i;
+#X obj 173 205 + 1;
+#X floatatom 212 222 5 -5 5 0 - - -;
+#X obj 130 138 sel 1 2;
+#X msg 19 50 1;
+#X msg 250 50 2;
+#X text 96 258 decrease;
+#X text 161 182 increase;
+#X obj 142 377 s \$0-scalePicker;
+#X text 11 1 incoming minus;
+#X text 241 -1 incoming plus;
+#X obj 212 295 moses -5;
+#X obj 257 320 moses 6;
+#X msg 212 312 -5;
+#X msg 296 338 5;
+#X text 343 300 low limiters \; change as needed \; note: upper limit
+needs \; moses at limit+1;
+#X obj 123 3 key;
+#X obj 123 33 sel 45 61;
+#X text 120 55 use keys \; + or -;
+#X connect 0 0 10 0;
+#X connect 1 0 11 0;
+#X connect 3 0 9 0;
+#X connect 4 0 8 0;
+#X connect 5 0 4 1;
+#X connect 6 0 8 0;
+#X connect 7 0 6 1;
+#X connect 8 0 7 0;
+#X connect 8 0 5 0;
+#X connect 8 0 17 0;
+#X connect 9 0 4 0;
+#X connect 9 1 6 0;
+#X connect 10 0 3 0;
+#X connect 11 0 3 0;
+#X connect 17 0 19 0;
+#X connect 17 1 18 0;
+#X connect 18 0 2 0;
+#X connect 18 0 14 0;
+#X connect 18 1 20 0;
+#X connect 19 0 8 0;
+#X connect 20 0 8 0;
+#X connect 22 0 23 0;
+#X connect 23 0 10 0;
+#X connect 23 1 11 0;
+#X restore 46 204 pd scalePicker;
+#X floatatom 45 229 5 0 0 0 - - -;
+#X text 44 262 makes use of the + and - \; keys. limit is currently
+\; set at 5 and -5 \, change within \; use [r \$0-scalePicker] to recieve
+;
+#N canvas 361 358 376 119 guitarButton 0;
+#X obj 29 16 inlet;
+#X obj 29 73 outlet;
+#X obj 29 46 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 86 72 s \$0-guitarButton;
+#X text 80 17 this is the button where the audio jack \; would be \,
+not sure what this would be used \; for.;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 2 0 3 0;
+#X restore 171 97 pd guitarButton;
+#X obj 171 121 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 169 144 this is the button where the \; audio jack would be
+\; use [r \$0-guitarButton] to recieve;
+#N canvas 615 213 359 150 vertShake 0;
+#X obj 29 22 inlet;
+#X obj 29 50 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 29 92 outlet;
+#X obj 88 65 s \$0-vertShaker;
+#X text 81 8 this triggers when the guitar is held \; vertically. could
+use the bangs or just \; the toggle on/off;
+#X obj 85 92 outlet;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 3 0;
+#X connect 1 0 5 0;
+#X restore 215 -29 pd vertShake;
+#X obj 284 -4 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 215 -4 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 214 20 used for the vertical extra "rocking" \; use [r \$0-vertShaker]
+to recieve;
+#X text 334 256 other buttons \; btn 8 = minus \; btn 9 = plus \; btn
+12 = connection button \; btn 5 = vert vs horiz \; hatswitch = strum
+\; abs_z = whammy \; abs_zr = switch;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 1 1 3 0;
+#X connect 1 2 2 0;
+#X connect 2 0 5 0;
+#X connect 3 0 7 0;
+#X connect 3 1 8 0;
+#X connect 4 0 10 0;
+#X connect 4 1 11 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 14 1 15 1;
+#X connect 14 2 18 0;
+#X connect 14 3 21 0;
+#X connect 15 0 16 0;
+#X connect 18 0 19 0;
+#X connect 21 0 23 0;
+#X connect 21 1 22 0;
+#X restore 304 281 pd switchStuff;
+#X obj 304 198 route key abs;
+#X text 419 91 debugging--- see if your controller is working;
+#X text 392 198 which button?;
+#X obj 158 -13 inlet;
+#X obj 304 -15 inlet;
+#X text 528 688 make guitar sounds;
+#X floatatom -17 418 5 0 0 0 - - -;
+#X obj -33 418 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 24 398 5 0 0 0 - - -;
+#X obj 8 398 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 65 377 5 0 0 0 - - -;
+#X obj 49 377 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 107 357 5 0 0 0 - - -;
+#X obj 91 357 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 148 337 5 0 0 0 - - -;
+#X obj 132 337 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 190 318 5 0 0 0 - - -;
+#X obj 174 318 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 303 313 things that are not strings \; useful recieves: [r
+\$0-scalePicker] + and - keys \; [r \$0-guitarButton] connection button
+on guitar \; [r \$0-vertShaker] when guitar is held vertically \; [r
+\$0-strumOn] bangs when strummed \; [r \$0-strumNumber] sends out the
+0 \, 4 and 8 of strummer \; [r \$0-whammyNorm] whammy between 0 and
+1 \; [r \$0-whammyReal] whammy between 0 and 255 \; [r \$0-switchState]
+where is the switch 1-5 \;;
+#X text 0 450 all the string stuff \; useful recieves when strummed:
+[r \$0-stringZero] open string \; [r \$0-stringOne] fret 1 pressed
+\; [r \$0-stringTwo] fret 2 pressed \; [r \$0-stringThree] fret 3 pressed
+\; [r \$0-stringFour] fret 4 pressed \; [r \$0-stringFive] fret 5 pressed
+\; jump the octave [r \$0-stringSix] fret 6 pressed \; [r \$0-stringSeven]
+fret 7 \; [r \$0-stringEight] fret 8 \; [r \$0-stringNine] fret 9 \;
+[r \$0-stringTen] fret 10 \;;
+#N canvas 690 615 303 224 scales 1;
+#X obj 55 -4 r \$0-scalePicker;
+#X obj -14 79 loadbang;
+#X obj 55 124 +;
+#X floatatom 55 148 5 0 0 0 - - -;
+#X text 125 79 defaults at 60 \; changes the base \; note for different
+\; keys;
+#X obj 55 169 s \$0-baseNote;
+#X msg 55 96 48;
+#X obj 55 53 t b f;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 6 0 2 0;
+#X connect 7 0 6 0;
+#X connect 7 1 2 1;
+#X restore 462 590 pd scales;
+#X text 461 608 picks the key \; [r \$0-baseNote] to receieve;
+#X obj 451 715 outlet~;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 4 0;
+#X connect 2 0 13 0;
+#X connect 3 0 2 0;
+#X connect 4 0 6 0;
+#X connect 4 1 7 0;
+#X connect 4 2 5 0;
+#X connect 8 0 35 0;
+#X connect 9 0 20 0;
+#X connect 9 0 19 0;
+#X connect 9 1 21 0;
+#X connect 9 1 22 0;
+#X connect 9 2 23 0;
+#X connect 9 2 24 0;
+#X connect 9 3 25 0;
+#X connect 9 3 26 0;
+#X connect 9 4 27 0;
+#X connect 9 4 28 0;
+#X connect 9 5 29 0;
+#X connect 9 5 30 0;
+#X connect 13 0 9 0;
+#X connect 13 0 12 0;
+#X connect 13 1 12 1;
+#X connect 16 0 3 0;
+#X connect 17 0 1 0;
